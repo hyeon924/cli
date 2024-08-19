@@ -9,6 +9,7 @@ public class App {
     }
 
     void run () {
+        int lastId = 1;
         System.out.println("== 게시판 앱 ==");
         while (true) {
             System.out.print("명령) ");
@@ -21,7 +22,8 @@ public class App {
                 String subject = sc.nextLine().trim();
                 System.out.print("내용 : ");
                 String content = sc.nextLine().trim();
-                System.out.println("1번 게시물이 등록되었습니다.");
+                System.out.printf("%d번 게시물이 등록되었습니다.\n", lastId);
+                lastId++;
             }
         }
     }

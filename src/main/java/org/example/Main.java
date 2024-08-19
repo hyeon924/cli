@@ -1,12 +1,20 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("HI");
-        System.out.println("commit 1");
-        System.out.println("commit 2");
-        System.out.println("commit 3");
+        System.out.println("==게시판 앱==");
+        Scanner sc = new Scanner(System.in); //스캐너를 받아옴
+
+        while (true) {
+            System.out.print("명령) ");
+            String command = sc.nextLine();
+
+            if(command.equals("종료")) {
+                break;
+            }
+
+        }
     }
 }

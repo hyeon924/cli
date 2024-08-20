@@ -21,4 +21,11 @@ public class Article { // 등록 된 값을 저장 하기 위해 객체를 만�
         return this.content;
     }
 
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

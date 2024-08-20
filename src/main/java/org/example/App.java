@@ -64,23 +64,39 @@ public class App {
                     articleList.remove(article);
                     System.out.printf("%d번 게시물이 삭제되었습니다.\n", idx);
                 }
+            } else if (command.startsWith("update")) {
+                String[] commandList = command.split("\\?", 2);
 
+                String actionCode = commandList[0];
 
-//            else if (command.startsWith("delete?id")) {
-//                String[] parts = command.split("=");
-//                if(parts.length == 2) {
-//                    int idToDelete = Integer.parseInt(parts[1].trim());
-//                    boolean deleted = false;
-//                    for(int i = 0; i < articleList.size(); i++) {
-//                        if(articleList.get(i).getId() == idToDelete) {
-//                            articleList.remove(i);
-//                            System.out.printf("%d번 게시물이 삭제되었습니다.\n", idToDelete);
-//                            deleted = true;
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
+                String[] paramsStr = commandList[1].split("=", 2);
+
+                String key = paramsStr[0];
+                String value = paramsStr[1];
+                int idx = Integer.parseInt(value);
+
+                Article article = null;
+                for (Article item : articleList) {
+                    if(item.getId() == idx) {
+                        article = item;
+                    }
+                }
+                if(article == null) {
+                    System.out.printf("%d번 게시물은 존재하지 않습니다.\n", idx);
+                } else {
+                    System.out.printf("제목(기존) : %s\n", article.getSubject());
+                    System.out.print("제목 : ");
+                    String modifySubject = sc.nextLine();
+                    article.setSubject(modifySubject);
+
+                    System.out.printf("내용(기존) : %s\n", article.getContent());
+                    System.out.print("내용 : ");
+                    String modifyContent = sc.nextLine();
+                    article.setContent(modifyContent);
+
+                    System.out.printf("%d번 게시물이 수정되었습니다.\n", idx);
+                }
+
             }
         }
     }

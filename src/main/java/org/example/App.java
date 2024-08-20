@@ -36,9 +36,23 @@ public class App {
             } else if (command.equals("list")) {
                 System.out.println("Number / Title / Content");
                 System.out.println("----------------------");
-                for (int i = 0; i < articleList.size(); i++) {
+                for (int i = 0; i < articleList.size(); i++) { //int i = articleList.size() - 1; i >= 0; i-- 으로 조건을 바꿔주면 목록이 반대로 출력됨
                     Article article = articleList.get(i);
                     System.out.printf("%d, %s, %s\n", article.getId(), article.getSubject(), article.getContent());
+                }
+            } else if (command.startsWith("delete?id")) {
+                String[] parts = command.split("=");
+                if(parts.length == 2) {
+                    int idToDelete = Integer.parseInt(parts[1].trim());
+                    boolean deleted = false;
+                    for(int i = 0; i < articleList.size(); i++) {
+                        if(articleList.get(i).getId() == idToDelete) {
+                            articleList.remove(i);
+                            System.out.printf("%d번 게시물이 삭제되었습니다.\n", idToDelete);
+                            deleted = true;
+                            break;
+                        }
+                    }
                 }
             }
         }

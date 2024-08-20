@@ -19,22 +19,22 @@ public class App {
             System.out.print("명령) ");
             String command = sc.nextLine().trim();
 
-            if (command.equals("종료")) {
+            if (command.equals("end")) {
                 break;
-            } else if (command.equals("등록")) {
-                System.out.print("제목 : ");
-                String subject = sc.nextLine().trim();
-                System.out.print("내용 : ");
+            } else if (command.equals("add")) { //equals 문자열을 정확하게 비교하기 위해서 작성
+                System.out.print("subject : ");
+                String subject = sc.nextLine().trim(); //trim 공백을 제거하고 받기 위해서 작성
+                System.out.print("content : ");
                 String content = sc.nextLine().trim();
 
 
                 Article article = new Article(lastId, subject, content);
                 articleList.add(article);
 
-                System.out.printf("%d번 게시물이 등록되었습니다.\n", lastId); // 증감 처리
+                System.out.printf("%d번 게시물이 등록되었습니다.\n", lastId); // 증감 처리, 게시물이 등록 될 때마다 n번째로 증감이 되어야함.
                 lastId++;
-            } else if (command.equals("목록")) {
-                System.out.println("번호 / 제목 / 내용");
+            } else if (command.equals("list")) {
+                System.out.println("Number / Title / Content");
                 System.out.println("----------------------");
                 for (int i = 0; i < articleList.size(); i++) {
                     Article article = articleList.get(i);

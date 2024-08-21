@@ -1,6 +1,7 @@
 package org.example.article;
 
 import org.example.Container;
+import org.example.Request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,21 +32,35 @@ public class ArticleController {
         }
 
     }
-    public void delete (int idx) {
-        Article article = _getFindById(idx);
+    public void delete (Request request) {
+        int id = _getIntParam(request.getParams("id"));
+
+        if (id == -1) {
+            System.out.println("잘못된 입력입니다.");
+            return;
+        }
+
+        Article article = _getFindById(id);
 
         if (article == null) {
-            System.out.printf("%d번 게시물은 존재하지 않습니다.\n", idx);
+            System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
         } else {
             articleList.remove(article);
-            System.out.printf("%d번 게시물이 삭제되었습니다.\n", idx);
+            System.out.printf("%d번 게시물이 삭제되었습니다.\n", id);
         }
     }
-    public void modify (int idx) {
-        Article article = _getFindById(idx);
+    public void modify (Request request) {
+        int id = _getIntParam(request.getParams("id"));
+
+        if (id == -1) {
+            System.out.println("잘못된 입력입니다.");
+            return;
+        }
+
+        Article article = _getFindById(id);
 
         if (article == null) {
-            System.out.printf("%d번 게시물은 존재하지 않습니다.\n", idx);
+            System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
         } else {
 
             System.out.printf("제목(기존) : %s\n", article.getSubject());
@@ -58,10 +73,18 @@ public class ArticleController {
             String modifyContent = Container.getSc().nextLine();
             article.setContent(modifyContent);
 
-            System.out.printf("%d번 게시물이 수정되었습니다.\n", idx);
+            System.out.printf("%d번 게시물이 수정되었습니다.\n", id);
         }
     }
 
+    private int _getIntParam(String id) {
+        int defaultValue = -1;
+        try {
+            return Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
 
     private Article _getFindById(int id) {
         for (Article item : articleList) {

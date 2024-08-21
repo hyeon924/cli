@@ -29,9 +29,9 @@ public class App {
             } else if (request.getActionCode().equals("list")) {
                 articleController.list();
             } else if (request.getActionCode().startsWith("delete")) {
-                articleController.delete(request.getIdx());
+                articleController.delete(request);
             } else if (request.getActionCode().startsWith("modify")) {
-                articleController.modify(request.getIdx());
+                articleController.modify(request);
             }
         }
     }

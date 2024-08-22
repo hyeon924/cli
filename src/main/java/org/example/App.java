@@ -8,12 +8,12 @@ public class App {
     SystemController systemController;
 
 
-    App () {
+    App() {
         articleController = new ArticleController();
         systemController = new SystemController();
     }
 
-    public void run () {
+    public void run() {
         System.out.println("== 게시판 앱 ==");
         while (true) {
             System.out.print("명령) ");

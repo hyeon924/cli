@@ -17,7 +17,7 @@ public class App {
         DBConnection.DB_PORT =3306;
         DBConnection.DB_USER ="root";
         DBConnection.DB_PASSWORD = "";
-
+        // DB 연결
         Container.getDBConnection().connect();
 
         articleController = new ArticleController();
@@ -32,16 +32,16 @@ public class App {
             // 커맨드에 입력한 내용을 actionCode, idx로 분류해서 필드로 저장
             Request request = new Request(command);
 
-            if (request.getActionCode().equals("종료")) {
+            if (request.getActionCode().equals("end")) {
                 systemController.exit();
                 break;
-            } else if (request.getActionCode().equals("등록")) {
+            } else if (request.getActionCode().equals("add")) {
                 articleController.write();
-            } else if (request.getActionCode().equals("목록")) {
+            } else if (request.getActionCode().equals("list")) {
                 articleController.list();
-            } else if (request.getActionCode().startsWith("삭제")) {
+            } else if (request.getActionCode().startsWith("delete")) {
                 articleController.delete(request);
-            } else if (request.getActionCode().startsWith("수정")) {
+            } else if (request.getActionCode().startsWith("modify")) {
                 articleController.modify(request);
             }
         }

@@ -19,13 +19,15 @@ public class ArticleRepository {
     }
 
     public List<Article> findAll() {
+        List<Article> articleList = new ArrayList<>();
+
         List<Map<String, Object>> rows = Container.getDBConnection().selectRows("select * from article");
 
         for (Map<String, Object> row : rows) {
             Article article = new Article(row);
+
             articleList.add(article);
         }
-
         return articleList;
     }
 

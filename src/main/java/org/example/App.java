@@ -13,16 +13,12 @@ public class App {
 
 
     App() {
-        DBConnection.DB_NAME = "proj1";
-        DBConnection.DB_PORT = 3306;
-        DBConnection.DB_USER = "root";
+        DBConnection.DB_NAME ="proj1";
+        DBConnection.DB_PORT =3306;
+        DBConnection.DB_USER ="root";
         DBConnection.DB_PASSWORD = "";
 
-        DBConnection DBConnection = new DBConnection();
-        DBConnection.connect();
-
-        List<Map<String, Object>> rs = DBConnection.selectRows("select * from article");
-        System.out.println(rs);
+        Container.getDBConnection().connect();
 
         articleController = new ArticleController();
         systemController = new SystemController();
@@ -50,4 +46,6 @@ public class App {
             }
         }
     }
+
+
 }

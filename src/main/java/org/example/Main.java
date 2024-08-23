@@ -5,6 +5,5 @@ public class Main {
         Container.init();
         new App().run();
         Container.close();
-
     }
 }

@@ -8,20 +8,19 @@ import java.util.Map;
 
 public class ArticleRepository {
     List<Article> articleList = new ArrayList<>();
-    int lastId = 1;
 
     public int create(String subject, String content) {
-        Article article = new Article(lastId, subject, content);
-        articleList.add(article);
-        lastId++;
+        String sql = String.format("insert into article set subject='%s', content='%s'", subject, content);
+        int id = Container.getDBConnection().insert(sql);
 
-        return article.getId();
+        return id;
     }
 
     public List<Article> findAll() {
         List<Article> articleList = new ArrayList<>();
 
         List<Map<String, Object>> rows = Container.getDBConnection().selectRows("select * from article");
+
 
         for (Map<String, Object> row : rows) {
             Article article = new Article(row);

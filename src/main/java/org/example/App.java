@@ -4,9 +4,6 @@ import org.example.article.ArticleController;
 import org.example.db.DBConnection;
 import org.example.system.SystemController;
 
-import java.util.List;
-import java.util.Map;
-
 public class App {
     ArticleController articleController;
     SystemController systemController;

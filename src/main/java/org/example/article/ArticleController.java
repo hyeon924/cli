@@ -44,7 +44,7 @@ public class ArticleController {
             return;
         }
 
-        Article article = this.articleService.getFindById(id);
+        Article article = this.articleService.FindById(id);
 
         if (article == null) {
             System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
@@ -62,7 +62,7 @@ public class ArticleController {
             return;
         }
 
-        Article article = articleService.getFindById(id);
+        Article article = articleService.FindById(id);
 
         if (article == null) {
             System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ArticleRepository {
-    List<Article> articleList = new ArrayList<>();
 
     public int create(String subject, String content) {
         String sql = String.format("insert into article set subject='%s', content='%s'", subject, content);
@@ -30,7 +29,8 @@ public class ArticleRepository {
         return articleList;
     }
 
-    public Article getFindById(int id) {
+    public Article FindById(int id) {
+        List<Article> articleList = this.findAll();
         for (Article item : articleList) {
             if (item.getId() == id) {
                 return item;
@@ -41,11 +41,12 @@ public class ArticleRepository {
     }
 
     public void remove(Article article) {
-        articleList.remove(article);
+        String sql = String.format("DELETE FROM article where id = %d", article.getId());
+        Container.getDBConnection().delete(sql);
     }
 
     public void modify(Article article, String modifySubject, String modifyContent) {
-        article.setSubject(modifySubject);
-        article.setContent(modifyContent);
+        String sql = String.format("UPDATE article SET subject='%s', content='%s' where id=%d", modifySubject, modifyContent, article.getId());
+        Container.getDBConnection().update(sql);
     }
 }
